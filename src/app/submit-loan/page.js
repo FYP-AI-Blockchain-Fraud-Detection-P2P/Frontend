@@ -68,27 +68,6 @@ export default function SubmitLoan() {
 
     return (
         <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#ffffff', color: '#000000' }}>
-            {/* Navigation Bar */}
-            <nav className="bg-gray-200 p-4 shadow-md">
-                <div className="flex space-x-4">
-                    <Link href="/">
-                        <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                            Home
-                        </button>
-                    </Link>
-                    <Link href="/submit-loan">
-                        <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                            Submit Loan
-                        </button>
-                    </Link>
-                    <Link href="/loan">
-                        <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                            View Loan Details
-                        </button>
-                    </Link>
-                </div>
-            </nav>
-
             {/* Main Content */}
             <div className="flex flex-col items-center justify-center flex-1 p-4" style={{ backgroundColor: '#ffffff', color: '#000000' }}>
                 <h1 className="text-3xl font-bold mb-6">Submit a Loan Application</h1>

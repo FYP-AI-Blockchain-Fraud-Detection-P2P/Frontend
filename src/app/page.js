@@ -22,6 +22,10 @@ export default function Home() {
       }
     };
     fetchLoans();
+
+    const interval = setInterval(fetchLoans, 5000); // fetch every 5 seconds
+
+    return () => clearInterval(interval)
   }, []);
 
   const openModal = (loan) => {
@@ -60,27 +64,6 @@ export default function Home() {
 
   return (
       <div className="min-h-screen flex flex-col bg-white text-black">
-        {/* Navigation Bar */}
-        <nav className="bg-gray-200 p-4 shadow-md">
-          <div className="flex space-x-4">
-            <Link href="/">
-              <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                Home
-              </button>
-            </Link>
-            <Link href="/submit-loan">
-              <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                Submit Loan
-              </button>
-            </Link>
-            <Link href="/loan">
-              <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                View Loan Details
-              </button>
-            </Link>
-          </div>
-        </nav>
-
         {/* Main Content */}
         <div
             className={`flex flex-col items-center justify-center flex-1 p-4 bg-white text-black transition-all duration-300 ${
@@ -121,7 +104,7 @@ export default function Home() {
                           <td className="px-4 py-2 border border-black">{loan.loan_id}</td>
                           <td className="px-4 py-2 border border-black">${loan.loan_amnt}</td>
                           <td className="px-4 py-2 border border-black">{loan.term} months</td>
-                          <td className="px-4 py-2 border border-black">{(loan.int_rate * 100).toFixed(2)}%</td>
+                          <td className="px-4 py-2 border border-black">{(loan.int_rate / 100).toFixed(2)}%</td>
                           <td className="px-4 py-2 border border-black">{loan.is_fraud ? 'Yes' : 'No'}</td>
                           <td className="px-4 py-2 border border-black">
                             <button
@@ -219,11 +202,11 @@ export default function Home() {
                 <div className="space-y-2">
                   <p><strong>Loan Amount:</strong> ${selectedLoan.loan_amnt}</p>
                   <p><strong>Term:</strong> {selectedLoan.term} months</p>
-                  <p><strong>Interest Rate:</strong> {(selectedLoan.int_rate * 100).toFixed(2)}%</p>
+                  <p><strong>Interest Rate:</strong> {(selectedLoan.int_rate / 100).toFixed(2)}%</p>
                   <p><strong>Installment:</strong> ${selectedLoan.installment.toFixed(2)}</p>
                   <p><strong>Employment Length:</strong> {selectedLoan.emp_length} years</p>
                   <p><strong>Annual Income:</strong> ${selectedLoan.annual_inc}</p>
-                  <p><strong>Debt-to-Income Ratio:</strong> {(selectedLoan.dti * 100).toFixed(2)}%</p>
+                  <p><strong>Debt-to-Income Ratio:</strong> {(selectedLoan.dti / 100).toFixed(2)}%</p>
                   <p><strong>Zip Code:</strong> {selectedLoan.zip_code}</p>
                   <p><strong>State:</strong> {selectedLoan.addr_state}</p>
                   <p><strong>Grade:</strong> {selectedLoan.grade}</p>
